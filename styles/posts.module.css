@@ -1,0 +1,8 @@
+.posts {
+    margin: 150px 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 585px 585px;
+    grid-column-gap: 30px;
+    grid-row-gap: 40px;
+}
