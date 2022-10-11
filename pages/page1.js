@@ -27,6 +27,7 @@ export default function page1() {
             <Head>
                 <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
+                <title>재귀함수랑 짱친먹기</title>
             </Head>
             <div className={styles.content}>
                 <h1 className={styles.title}>재귀함수랑 짱친먹기</h1>
