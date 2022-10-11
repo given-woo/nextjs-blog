@@ -1,0 +1,149 @@
+![](./images/nextjs.jpeg)
+
+# TL;DR
+미친 고딩이 시험끝나고 할 짓 없어서 하루만에 블로그를 만든 이야기다.
+>github : [@given-woo/nextjs-blog](https://github.com/given-woo/nextjs-blog)
+
+---
+
+# Next.js
+이번에 눈쟁이님 프로젝트에 `눈조장-프론트엔드`, 그리고 `눈조장-디자인`으로 참여하게 되면서 중간이 끝나고 갑자기(?) 프론트엔드 공부를 하게 되었다.  
+이번 프로젝트에 사용할 프론트엔드 스택은 `Next.js, typescript` 였다.  
+  
+타입스크립트는 간단하니 나중에 하면 된다고 생각되어서 Next.js를 먼저 해봤다.  
+그런데 생각보다 너무 Next.js 문서가 잘되어 있고 React를 먼저 배워서 그런지 정말 어려운 내용이 없이 거의 하루만에 완주할 수 있었다. (!!!)
+
+그래서 Next.js로 어떤 토이프로젝트를 할 수 있을지 고민하던 중 **'맨날 하는 to-do-list 말고 velog 같은 Markdown 형식의 블로그를 만들면 어떨까?'** 라는 생각이 들어 무작정 만들어 보았다.
+
+---
+
+# 디자인!을! 해보자!
+
+## 1. 기본틀을 잡아보자
+색은 깔끔한 느낌을 주기위해 **파란색을 포인트로** 사용할 것이고, 폰트 또한 깔끔하면서 라이선스 문제가 없어서 내가 애용하는 **Gmarket Sans 폰트**를 사용할 것이다.  
+
+이를 바탕으로 먼저 내 블로그에 사용할 색들을 라이트 테마를 기준으로 잡아보았다.
+![](./images/pallet.png)
+
+## 2. 심플?
+이 색들을 바탕으로 간단하게 메인페이지를 디자인해보았다.
+![](./images/design.png)
+단기간에 끝낼 토이프로젝트이기 때문에 최대한 간단하게 디자인 해서 단기간에 만들 수 있도록 하고자 하였다.
+<s>사실 심플은 핑계고 디자인 아이디어 내기 귀찮았다.</s>
+
+---
+
+# 개발!을! 해보자!
+
+## 1. 메인페이지 만들기
+디자인을 바탕으로 간단하게 컴포넌트들을 만들어 주었다.
+![](./images/components.png)
+`profile` 컴포넌트는 말 그대로 내 프로필을 이쁘게 출력해주는 역할을 한다. `posts` 컴포넌트는 각 `post` 컴포넌트에 이미지와 제목등의 정보를 주고 배치를 조절하도록 하였다.
+```JSX
+/* /components/profile.js */
+import styles from '../styles/profile.module.css'
+
+import Image from 'next/image';
+
+export default function Profile() {
+    return (
+        <div className={styles.profile}>
+            <img
+                className={styles.profile__image}
+                src="/images/ipad2.png"
+            />
+            <p className={styles.profile__name}>JipGaGoSipDa</p>
+            <p className={styles.profile__text}>A student Developer from Korea :D</p>
+            <div className={styles.profile__badge}>
+                <p className={`${styles.profile__badge__item} ${styles.profile__badge__item_github}`}><a href="https://github.com/given-woo">github</a></p>
+                <p className={`${styles.profile__badge__item} ${styles.profile__bage__item_instagram}`}><a href="https://www.instagram.com/recived.woo/">instagram</a></p>
+                <p className={`${styles.profile__badge__item} ${styles.profile__bage__item_velog}`}><a href="https://velog.io/@given-woo">velog</a></p>
+            </div>
+        </div>
+    )
+}
+```
+```JSX
+/* /components/posts.js */
+import styles from '../styles/posts.module.css'
+
+import Post from './post'
+
+export default function Posts() {
+    return (
+        <div className={styles.posts}>
+            <Post imageUrl="https://velog.velcdn.com/images/given-woo/post/68f0717a-2ef4-472b-a5c4-499be3aefecb/image.gif" title="재귀함수랑 짱친먹기" text="재귀함수는 왜 어려운거지? 재귀함수랑 빠르게 친해질 수 있는 방법은 없을까? 재귀함수를 새롭고 독창적인 시각으로 바라보고 재귀함수랑 짱친먹자!" src="/jaegui" />
+        </div>
+    )
+}
+```
+```JSX
+/* /components/post.js */
+import styles from '../styles/post.module.css';
+
+import Link from 'next/link';
+
+export default function Post({imageUrl, title, text, src}) {
+    return (
+        <div className={styles.post}>
+            <img 
+                className={styles.post__image}
+                src={imageUrl} 
+            />
+            <p className={styles.post__title}><Link href={src}>{title}</Link></p>
+            <p className={styles.post__text}>{text}</p>
+        </div>
+    )
+}
+```
+이렇게 만든 컴포넌트들에 modular css를 통해 스타일을 입혀주고 `index.js`에서 모아주면 완성이다.
+
+## 2. 뷰어 만들기
+가장 먼저 생각한건 마크다운 렌더링을 뭘써서 만들지였다. 당연히 Next.js는 사용할 것 인데 Markdown을 어떻게 화면에 띄워줄지가 문제였다.  
+
+처음에는 Next.js도 리액트의 일종이니 `react-markdown` 같은 리액트에서 자주 사용하는 라이브러리들 사용하면 어떨까? 해서 조금 알아보다가 빡쳐서 던졌다.
+[(이때 보고 따라했던 사이트다. 정리는 잘 되어 있지만 내 이해력이 딸린다.)](https://velog.io/@alskt0419/React-markdown-%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%8B%9C%EC%BC%9C%EB%B3%B4%EA%B8%B0)  
+
+그 후 Next.js 공식 문서를 뒤져보니 `MDX` 라는 개쩌는 친구를 찾을 수 있었다. 얘는 `JSX`와 유사하였는데, Markdown에 javascript를 추가하여 markdown을 동적으로 만들어주고 쉽게 리액트로 렌더링 할 수 있게 만들어주는 친구였다.
+[(Next.js 공식문서 - Using MDX with Next.js)](https://nextjs.org/docs/advanced-features/using-mdx)
+
+이렇게 만든 mdx 파일을 렌더링 해주도록 페이지 파일도 작성했다.
+```JSX
+import Page from './blog_md.mdx';
+import Head from 'next/head';
+
+export default function page1() {
+    return(
+        <div class={styles.wrap}>
+            <Head>
+                <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
+                <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
+                <title>Next.js로 하루만에 블로그 만들기</title>
+            </Head>
+            <Page />
+        </div>
+    );
+}
+```
+
+## 3. 테마 제작하기
+그런데 예상치 못한 문제가 발생했다. : **기본 테마가 너무 <s>구지다</s> 아름답지 못하다.**
+![](./images/no_theme.png)
+모든 마크다운의 요소들이 아무런 스타일이 적용되지 않은 html 기본 태그들이 되면서 벌어진 대참사다. 이걸 해결하기 위해서도 또 삽질을 했다.  
+
+`@emotion/react`로 해결하려고 고생고생을 하다가 때려치고 그냥 next.js에서 제공하는 기능으로 만들었다.  
+만들면서 느끼는거지만 next.js는 외부의 요소를 가져오는 것 보다 그냥 공식문서에서 하라는대로 하는게 최고인 것 같다.
+
+사이트의 포인트색인 파란색을 포함해서 가장 기본적인 작업만을 하였으나 css 175줄이라는 꽤나 귀찮은 작업이 만들어졌고, 이를 견디니 나름 괜찮은 테마가 만들어졌다.
+![](./images/theme.png)
+
+---
+
+# 후기
+next.js를 배운지 하루만에 블로그를 만들수 있다는 것에서 next.js의 공식문서가 쩐다는 것을 다시 한번 느낄 수 있었다.  
+또한 요즘 문서를 읽는 실력이 늘고 있는 것 같아서 기분이가 굉장히 좋다.  
+
+하루만에 만들었다보니 블로그에는 여러 기능들이 부족한데 다음 기능들은 추후 업데이트를 통해 채워나가겠다.
+>1. Codeblock Highlisht
+>2. 업로드 기능
+>3. 로그인 기능을 통해 velog 같은 각자의 블로그 생성 가능하게 하기
