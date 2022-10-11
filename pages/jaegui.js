@@ -1,6 +1,6 @@
 import styles from '../styles/view.module.css'
 
-import Page1 from './page1.mdx';
+import Page from './jaegui_md.mdx';
 import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img } from '../components/view';
 import Head from 'next/head';
 
@@ -31,7 +31,7 @@ export default function page1() {
             </Head>
             <div className={styles.content}>
                 <h1 className={styles.title}>재귀함수랑 짱친먹기</h1>
-                <Page1 components={components} />
+                <Page components={components} />
             </div>
         </div>
     );
