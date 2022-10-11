@@ -1,7 +1,7 @@
 import styles from '../styles/view.module.css'
 
 import Page from './search_algo_md.mdx';
-import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img } from '../components/view';
+import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img, List_ol } from '../components/view';
 import Head from 'next/head';
 
 const components = {
@@ -11,7 +11,7 @@ const components = {
     h4: Heading4,
     p: Text,
     hr: Divider,
-    ol: List_ul,
+    ol: List_ol,
     ul: List_ul,
     li: List_li,
     blockquote: Quote,
@@ -27,10 +27,10 @@ export default function page1() {
             <Head>
                 <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
-                <title>탐색기반 알고리즘 설계</title>
+                <title>탐색기반설계 vs 관계기반설계</title>
             </Head>
             <div className={styles.content}>
-                <h1 className={styles.title}>탐색기반 알고리즘 설계</h1>
+                <h1 className={styles.title}>탐색기반설계 vs 관계기반설계</h1>
                 <Page components={components} />
             </div>
         </div>

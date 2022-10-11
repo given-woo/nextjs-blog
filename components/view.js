@@ -39,6 +39,12 @@ function Divider({children}) {
     )
 }
 
+function List_ol({children}) {
+    return(
+        <ol className={styles.list_ul}>{children}</ol>
+    )
+}
+
 function List_ul({children}) {
     return(
         <ul className={styles.list_ul}>{children}</ul>
@@ -87,4 +93,4 @@ function Img({src, alt}) {
     )
 }
 
-export { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img };
+export { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ol, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img };

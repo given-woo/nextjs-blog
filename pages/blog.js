@@ -1,7 +1,7 @@
 import styles from '../styles/view.module.css'
 
 import Page from './blog_md.mdx';
-import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img } from '../components/view';
+import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img, List_ol } from '../components/view';
 import Head from 'next/head';
 
 const components = {
@@ -11,7 +11,7 @@ const components = {
     h4: Heading4,
     p: Text,
     hr: Divider,
-    ol: List_ul,
+    ol: List_ol,
     ul: List_ul,
     li: List_li,
     blockquote: Quote,
