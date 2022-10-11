@@ -9,11 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "firebase": "^9.11.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mdx-js/loader": "^2.1.4",
+    "@mdx-js/react": "^2.1.4",
+    "@next/mdx": "^12.3.1",
+    "mdx": "^0.3.1",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-firebase-hooks": "^5.0.3",
+    "react-latex-next": "^2.2.0",
+    "rehype-highlight": "^5.0.2",
+    "remark-mdx-code-meta": "^2.0.0",
     "sass": "^1.55.0"
   },
   "devDependencies": {

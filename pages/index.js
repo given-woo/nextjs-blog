@@ -3,25 +3,6 @@ import styles from '../styles/index.module.css';
 import Head from 'next/head'
 import Profile from '../components/profile';
 import Posts from '../components/posts';
-import { initializeApp } from 'firebase/app';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCprjV40rX5AwRoWCE3-MdkUPxiC0IIZXQ",
-  authDomain: "nextjs-blog-92aff.firebaseapp.com",
-  projectId: "nextjs-blog-92aff",
-  storageBucket: "nextjs-blog-92aff.appspot.com",
-  messagingSenderId: "312827212299",
-  appId: "1:312827212299:web:bd5201cb21b37774448d0e"
-};
-
-const app = initializeApp(firebaseConfig);
-
-/*
-  상단바 컴포넌트 1개
-  프로필 컴포넌트 1개
-  게시물 부모 컴포넌트 -> props로 각 글 정보 map
-  게시물 컴포넌트 -> prop에서 이미지, 글, 날자 가져오기
-*/
 
 export default function Home() {
   return (

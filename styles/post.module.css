@@ -18,8 +18,19 @@
     font-weight: 700;
     font-size: 18px;
     margin: 0;
-    margin-top: 13px;
+    margin-top: 10px;
     margin-left: 20px;
+}
+
+.post__title a {
+    color: #252525;
+}
+
+.post__title:hover a {
+    transition: ease-in 0.3s;
+    color: #3375D9;
+    text-decoration: underline;
+    text-underline-position: under;
 }
 
 .post__text {
@@ -28,4 +39,5 @@
     margin: 0;
     margin-top: 10px;
     margin-left: 20px;
+    margin-right: 20px;
 }

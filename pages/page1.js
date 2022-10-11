@@ -1,0 +1,37 @@
+import styles from '../styles/view.module.css'
+
+import Page1 from './page1.mdx';
+import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img } from '../components/view';
+import Head from 'next/head';
+
+const components = {
+    h1: Heading1,
+    h2: Heading2,
+    h3: Heading3,
+    h4: Heading4,
+    p: Text,
+    hr: Divider,
+    ol: List_ul,
+    ul: List_ul,
+    li: List_li,
+    blockquote: Quote,
+    pre: Codeblock,
+    a: a_tag,
+    code: Code,
+    img: Img
+}
+
+export default function page1() {
+    return(
+        <div class={styles.wrap}>
+            <Head>
+                <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
+                <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
+            </Head>
+            <div className={styles.content}>
+                <h1 className={styles.title}>재귀함수랑 짱친먹기</h1>
+                <Page1 components={components} />
+            </div>
+        </div>
+    );
+}
