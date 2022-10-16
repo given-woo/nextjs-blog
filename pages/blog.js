@@ -27,6 +27,7 @@ export default function page1() {
             <Head>
                 <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
+                <meta name="description" content="Next.js는 배웠는데 토이프로젝트로 뭘하지? 맨날 하던 To-do-List는 지겨워! 나만의 마크다운 블로그를 만들어보자!"></meta>
                 <title>Next.js로 하루만에 블로그 만들기</title>
             </Head>
             <div className={styles.content}>

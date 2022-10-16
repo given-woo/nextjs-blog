@@ -27,6 +27,7 @@ export default function page1() {
             <Head>
                 <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
+                <meta name="description" content="탐색기반설계는 뭐지? 관계기반설계는 또 뭘까? 알고리즘 설계 방법을 배워서 야무지게 알고리즘을 짜보자!"></meta>
                 <title>탐색기반설계 vs 관계기반설계</title>
             </Head>
             <div className={styles.content}>
