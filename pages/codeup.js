@@ -27,7 +27,7 @@ export default function page1() {
             <Head>
                 <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
-                <meta name="description" content="코드업 문제집 풀면서 놓쳤던 문제 정리! 하루 5문제씩 업데이트 됩니다."></meta>
+                <meta name="og:description" content="코드업 문제집 풀면서 놓쳤던 문제 정리! 하루 5문제씩 업데이트 됩니다."></meta>
                 <title>[코드업] 문제 풀이 노트</title>
             </Head>
             <div className={styles.content}>
