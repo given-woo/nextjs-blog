@@ -59,6 +59,7 @@
 }
 
 .list_ul {
+    list-style-position: inside;
     padding: 0;
 }
 
@@ -87,6 +88,16 @@
     margin: 0;
 }
 
+.code {
+    font-family: Hack, monospace;
+    color: #505050;
+    padding: 3px 10px;
+    border-radius: 2.5px;
+    border: 0.5px solid #50505050;
+    background-color: #F9F9F9;
+    margin: 0 5px;
+}
+
 .codeblock {
     box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.1);
     margin: 20px 0;
@@ -101,14 +112,10 @@
     color: #505050;
     line-height: 25px;
     tab-size: 4;
-}
-
-.code {
-    font-family: Hack, monospace;
-    color: #505050;
-    padding: 3px 10px;
-    border-radius: 2.5px;
-    background-color: #F9F9F9;
+    padding: none;
+    border-radius: 0;
+    border: none;
+    background-color: none;
 }
 
 .link {

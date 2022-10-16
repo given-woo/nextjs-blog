@@ -1,0 +1,208 @@
+import Latex from 'react-latex-next'
+
+# TL;DR
+이 글은 탐색기반설계를 바탕으로 해결할 수 있는 문제들의 풀이를 적은 글이다.  
+**탐색기반설계**와 **관계기반설계**에 대해 자세히 모른다면 아래 링크를 통해 학습을 한 후 읽는 것을 추천한다.  
+[탐색기반설계에 대해 더 알고싶다면 이 글을 참고하자!](/search_algo)
+
+---
+
+# 2623번 - 최대 공약수 구하기
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+
+우리는 다음과 같은 수학적인 정리를 바탕으로 **수학적 배제**를 할 수 있다.
+>1. 1은 공배수일 수 밖에 없다.
+>2. 공배수의 최대값은 주어진 수중 가장 작은 수이다.
+
+따라서 이에 따라 수학적 배제를 시켜 나머지 범위에서 가장 큰 공배수를 찾으면 된다.
+```c
+#include <stdio.h>
+
+int min(int a, int b) {
+	if (a > b)
+		return b;
+	return a;
+}
+
+int main(void) {
+	int a, b, max=1;
+	scanf("%d %d", &a, &b);
+	for(int i=2; i<=min(a, b); i++) {
+		if(!(a%i)&&!(b%i))
+			max=i;
+	}
+	printf("%d", max);
+}
+
+```
+
+---
+
+# 2625번 - 삼각화단 만들기 (small)
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+
+이 문제도 **수학적 배제**를 활용해 풀었다.  
+이 문제를 보고 내가 떠올린 수학적 정리는 다음과 같다.
+
+>삼각형에서 가장 긴변의 변의 길이는 나머지 두 변의 길이보다 작다.  
+>따라서 전체 둘레의 길이가 <Latex>$n$</Latex>이라면 가장 긴 변의 최솟값은 <Latex>{"${n}\\div 3$"}</Latex>, 최댓값은 <Latex>{"${n}\\div 2$"}</Latex>다.
+
+따라서 나는 위의 조건과 같은 범위에서 가장 긴 변 길이에 따른 경우를 찾도록 코드를 짜보았다.
+```c
+#include <stdio.h>
+
+int main(void) {
+	int n, cnt=0;
+	scanf("%d", &n);
+	for(int i=n/3; i<(float)n/2; i++) //가장 긴변
+		for(int j=1; j<=(float)(n-i)/2; j++) //다른 한 변
+			if(j<=i && (n-i-j)<=i)
+				cnt++;
+	printf("%d", cnt);
+}
+```
+
+---
+
+# 2626번 - (python) 삼각화단 만들기 (large)
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+
+놀랍게도 전의 문제를 너무 <s>야무지게</s> 잘 풀어서 이 문제에서도 코드가 먹힌다.  
+제목에 파이썬이라는 말은 왜 생긴지는 모르겠지만 C로 똑같이 제출했다.
+```c
+#include <stdio.h>
+
+int main(void) {
+	int n, cnt=0;
+	scanf("%d", &n);
+	for(int i=n/3; i<(float)n/2; i++) //가장 긴변
+		for(int j=1; j<=(float)(n-i)/2; j++) //다른 한 변
+			if(j<=i && (n-i-j)<=i)
+				cnt++;
+	printf("%d", cnt);
+}
+```
+
+---
+
+# 2628번 - 케익 자르기
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+![](https://codeup.kr/upload/201610/cake3.bmp)
+케이크 위 두 직선이 만난다면 다음이 성립함을 그림을 통해 확인할 수 있다.
+>1. 직선 B중 한점은 무조건 직선 A의 두 점 사이의 값이어야 한다.
+>2. 나머지 한점은 직선 A의 두점 밖의 범위여야한다.
+
+그리고 이것을 판별하기 위해서 나는 다음과 같은 규칙을 세웠다.
+>1. 쉬운 판별을 위해 직선 A, B에 대해 시작점이 도착점보다 작게 한다.
+>2. 판별식 `((a<c&&c<b)&&(d<a||b<d))||((a<d&&d<b)&&(c<a||b<c))` 을 만족하면 "cross"다.
+
+이를 바탕으로 코드를 짜주었다.
+```c
+#include <stdio.h>
+
+int main(void) {
+	int a, b, c, d;
+	scanf("%d %d", &a, &b);
+	scanf("%d %d", &c, &d);
+	if(a>b) {
+		int tmp=a;
+		a=b;
+		b=tmp;
+	}
+	if(c>d) {
+		int tmp=c;
+		c=d;
+		d=tmp;
+	}
+	if(((a<c&&c<b)&&(d<a||b<d))||((a<d&&d<b)&&(c<a||b<c)))
+		printf("cross");
+	else
+		printf("not cross");
+}
+```
+
+---
+
+# 2631번 - 보물찾기
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+
+n이 최대 10만 까지 가능하므로 시간복잡도를 줄이는 것이 문제의 핵심이다. 
+
+여기서 수열은 사용자가 무작위로 입력할 수 있으므로 수학적인 규칙을 찾기는 어려울 것 같고 **경험적 배제의 Bounding**이 적절해 보였다.  
+따라서 다음과 같은 규칙을 통해 실행 횟수를 줄이고자 하였다.
+>지금까지 계산한 합이 k이상이라면 더 이상 진행하지 않는다.
+
+여기까지의 생각을 바탕으로한 코드는 다음과 같다.
+```c
+#include <stdio.h>
+
+int main(void) {
+	int n, k, l[100000]={}, cnt=0;
+	scanf("%d %d", &n, &k);
+	for(int i=0; i<n; i++)
+		scanf("%d", &l[i]);
+	
+	for(int i=1; i<=n; i++) { //사이즈
+		for(int j=0; j<=n-i; j++) { //시작점
+			int sum=0;
+			for(int q=j; q<j+i; q++) { //시작점에서 사이즈만큼의 합 구하기
+				sum+=l[q];
+				if(sum>k)
+					break;
+			}
+			if(sum==k)
+				cnt++;
+		}
+	}
+	
+	printf("%d", cnt);
+}
+```
+
+![](./images/timeout.png)
+그런데 이렇게 실행했을 떄 10만개의 수를 입력하였을떄 2초가 걸리게 되면서 시간 초과가 발생하였다.  
+아직 시간복잡도가 충분히 낮지 않다는 뜻이다. 현재 소스코드의 시간복잡도는 <Latex>{"$O({N}\log{N})$"}</Latex> 정도 된다.  
+이건 `j`에서 `j+i`번째 까지의 수의 합을 계산하는 과정이 시간복잡도에 큰 영향을 주었기 때문에 발생하였을 것이다.  
+
+따라서 우리는 **수학적 배제**를 적용하고 3개의 for문을 사용한 부분을 2개의 for문으로 바꾸어 줄 것이다.  
+문제에서 수열의 원소 범위가 `int`이므로 다음과 같은 관계가 성립한다.
+>i부터 j까지의 합 < i부터 j+1까지의 합
+
+우리는 각 시작점에서 각 개수만큼의 합을 따로 계산했다.  
+하지만 어짜피 다 계산해야한다면 위의 정리에 따라 **시작점에서부터 차례로 더하며 `sum`이 `k`에 도달했을때 끊어주면 된다.**
+
+이를 바탕으로 코드를 짜 보았다.  
+```c
+#include <stdio.h>
+
+int main(void) {
+	int n, k, l[100000]={}, cnt=0;
+	scanf("%d %d", &n, &k);
+	for(int i=0; i<n; i++)
+		scanf("%d", &l[i]);
+	
+	for(int i=0; i<n; i++) { //시작점
+        int sum=0;
+		for(int j=i; j<n; j++) { //가능한 경우를 모두 해본다.
+			sum+=l[j];
+            if(sum==k)
+                cnt++;
+            if(sum>=k)
+                break;
+		}
+	}
+	
+	printf("%d", cnt);
+}
+```
+
+---
+
+# 2633번 - Lower Bound
+누가봐도 **수학적 배제의 이진탐색이다.**
+오름차순으로 정렬되어 있으므로 다음과 같은 규칙에 따라 이진탐색을 진행하자.
+>1. 가장 가운데의 원소를 `k`와 비교한다.
+>2. 더 작다면 앞쪽에서, 더 크다면 뒤쪽에서 다시 탐색을 시작한다.
+>3. 1번과 2번 과정을 반복한다.
+
+이를 바탕으로 코드를 짜보았다.
