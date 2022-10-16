@@ -27,7 +27,7 @@ export default function page1() {
             <Head>
                 <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
-                <meta name="og:description" content="아직도 for문을 이해 못한 사람들을 위한 for문 자습서! 10분만에 for문을 이해해보자!"></meta>
+                <meta property="og:description" content="아직도 for문을 이해 못한 사람들을 위한 for문 자습서! 10분만에 for문을 이해해보자!"></meta>
                 <title>For문 마스터 되기</title>
             </Head>
             <div className={styles.content}>
