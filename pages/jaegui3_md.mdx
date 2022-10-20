@@ -1,0 +1,152 @@
+import Latex from 'react-latex-next'
+
+# TL;DR
+어쩌다 보니 재귀함수 글만 4번째 적고 있다. (velog 포함)  
+더하면 뇌절인거 같으니 정답률이 낮은 재귀함수 5문제만 풀이를 적고 시리즈를 마치겠다.  
+(시험에 메모이제이션이 사용되지 않으므로 메모이제이션이 필요없는 문제만 선정했다.)
+
+----
+
+# 1917번 - n의 k승 구하기
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+```c
+#include <stdio.h>
+
+long long int get(long long int a, int b) { //a의 b승
+	if(a==1||b==0)
+		return 1;
+	else if(b==1)
+		return a;
+	else if(!(b%2))
+		return get(a*a, b/2);
+	else
+		return a*get(a*a, (b-1)/2);
+}
+
+int main(void) {
+	int n, k;
+	scanf("%d %d", &n, &k);
+	printf("%lld", get(n, k));
+	return 0;
+}
+```
+**'값을 반환하는 재귀함수'** 를 활용하였다.
+
+---
+
+# 1919번 - 숫자 거꾸로 출력하기
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+```c
+#include <stdio.h>
+
+int rmv(int n) { //필요없는 0을 제거
+	if(n%10!=0)
+		return n;
+	return rmv(n/10);
+}
+
+void prt(int n) { //주어진 수를 거꾸로 출력
+	if(n<=0)
+		return;
+	printf("%d", n%10);
+	prt(n/10);
+}
+
+int main(void) {
+	int n;
+	scanf("%d", &n);
+	if(n==0)
+	    printf("0");
+	else{
+	    n=rmv(n);
+	    prt(n);
+	}
+	return 0;
+}
+```
+2개의 재귀함수를 활용했다. `while`문을 사요할 수 없으므로 **'값을 반환하는 재귀함수'** 를 통해 필요없는 0을 제거해주었고, 이를 출력을 위한 **'행동울 수행하는 재귀 함수'** 에 넣어 출력해 주었다. n에 0이 입력되는 경우는 따로 처리해 줬다.
+
+---
+
+# 1857번 - 서로 다른 n개 중에서 r개 순서없이 고르기
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+![](/images/description.png)
+```c
+#include <stdio.h>
+
+int f(int n, int r) {
+	if(r==1)
+		return n;
+	if(r==n||r==0)
+		return 1;
+	if(r>n)
+		return 0;
+	return f(n-1, r-1)+f(n-1, r);
+}
+
+int main(void) {
+	int n, r;
+	scanf("%d %d", &n, &r);
+	printf("%d", f(n, r));
+}
+```
+문제에서 시키는 걸 잘보자. **점화식을 말해주고 있다.** 앞서 ["재귀함수랑 짱친먹기"](/jaegui)와 ["똥멍청이도 이해하는 재귀함수"](/jaegui2)에서 반복적으로 강조했듯 **'값을 반환하는 재귀함수'는 점화식으로 나타낼 수 있다.** 따라서 문제에서 시키는 대로 적으면 끝이다.
+
+---
+
+# 1807번 - 우박수 길이(3n+1) (small)
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+```c
+#include <stdio.h>
+
+int a, b, max_index=0, max=0;
+
+int rain(int n, int length) {
+	if(n==1)
+		return length+1;
+	else if(n%2)
+		return rain(3*n+1, length+1);
+	else
+		return rain(n/2, length+1);
+}
+
+void search(int n) {
+	if(n>b){
+		printf("%d %d", max_index, max);
+		return;
+	}
+	int k=rain(n, 0);
+	if(k>max){
+		max_index=n;
+		max=k;
+	}
+	search(n+1);
+}
+
+int main(void) {
+	scanf("%d %d", &a, &b);
+	search(a);
+}
+```
+문제에서 시키는 대로 **"반환값이 있는 재귀함수"를 통해 우박수 길이**를 받았고, **"행동을 수행하는 재귀함수"를 통해 해당 범위에서 가장 큰 우박수**를 찾았다.
+
+---
+
+# 1854번 - 재귀로 각 자리수의 합 리턴하기
+<span style={{color: '#fff', backgroundColor: '#28a745', padding: '7px 10px', borderRadius: '5px'}}>정확한 풀이</span>
+```c
+#include <stdio.h>
+
+long long int get(long long int n, long long int sum) {
+	if(n<=0)
+		return sum;
+	return get(n/10, sum+n%10);
+}
+
+int main(void) {
+	long long int n;
+	scanf("%lld", &n);
+	printf("%lld", get(n, 0));
+}
+```
+문제 제목에서 부터 **'합 리턴하기'**라고 되어 있다. "반환값이 있는 재귀함수"를 사용하자.
