@@ -1,7 +1,7 @@
-import styles from '../styles/view.module.css'
+import styles from '../../styles/view.module.css'
 
-import Page from './codeup_search_algo.mdx';
-import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img, List_ol } from '../components/view';
+import Page from '../../mdx/codeup_md.mdx';
+import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img, List_ol } from '../../components/view';
 import Head from 'next/head';
 
 const components = {
@@ -27,10 +27,11 @@ export default function page1() {
             <Head>
                 <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
-                <title>[코드업] 탐색기반설계 풀이</title>
+                <meta property="og:description" content="코드업 문제집 풀면서 놓쳤던 문제 정리! 하루 5문제씩 업데이트 됩니다."></meta>
+                <title>[코드업] 문제 풀이 노트</title>
             </Head>
             <div className={styles.content}>
-                <h1 className={styles.title}>[코드업] 탐색기반설계 풀이</h1>
+                <h1 className={styles.title}>[코드업] 문제 풀이 노트</h1>
                 <Page components={components} />
             </div>
         </div>

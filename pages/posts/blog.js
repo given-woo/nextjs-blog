@@ -1,7 +1,7 @@
-import styles from '../styles/view.module.css'
+import styles from '../../styles/view.module.css'
 
-import Page from './blog_md.mdx';
-import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img, List_ol } from '../components/view';
+import Page from '../../mdx/blog_md.mdx';
+import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img, List_ol } from '../../components/view';
 import Head from 'next/head';
 
 const components = {
