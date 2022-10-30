@@ -1,7 +1,7 @@
-import styles from '../styles/view.module.css'
+import styles from '../../styles/view.module.css'
 
-import Page from './search_algo_md.mdx';
-import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img, List_ol } from '../components/view';
+import Page from '../../mdx/for_md.mdx';
+import { Heading1, Heading2, Heading3, Heading4, Text, Divider, List_ul, List_li, Quote, a_tag, Codeblock, Code, Img, List_ol } from '../../components/view';
 import Head from 'next/head';
 
 const components = {
@@ -27,11 +27,11 @@ export default function page1() {
             <Head>
                 <link href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
-                <meta property="og:description" content="탐색기반설계는 뭐지? 관계기반설계는 또 뭘까? 알고리즘 설계 방법을 배워서 야무지게 알고리즘을 짜보자!"></meta>
-                <title>탐색기반설계 vs 관계기반설계</title>
+                <meta property="og:description" content="아직도 for문을 이해 못한 사람들을 위한 for문 자습서! 10분만에 for문을 이해해보자!"></meta>
+                <title>For문 마스터 되기</title>
             </Head>
             <div className={styles.content}>
-                <h1 className={styles.title}>탐색기반설계 vs 관계기반설계</h1>
+                <h1 className={styles.title}>For문 마스터 되기</h1>
                 <Page components={components} />
             </div>
         </div>
